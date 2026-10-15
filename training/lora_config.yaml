@@ -1,0 +1,20 @@
+# training/lora_config.yaml
+model: mlx-community/Qwen3-4B-4bit
+train: true
+data: training/data
+fine_tune_type: lora
+num_layers: 16
+batch_size: 4
+iters: 800
+learning_rate: 1.0e-4
+optimizer: adam
+max_seq_length: 1024
+mask_prompt: true
+seed: 42
+steps_per_eval: 100
+save_every: 100
+adapter_path: models/request-adapter
+lora_parameters:
+  rank: 16
+  scale: 2.0
+  dropout: 0.05

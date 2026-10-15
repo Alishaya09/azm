@@ -1,0 +1,193 @@
+/* الأدوار الثلاثة: أدوات الهيكل، إضافة المخزون، تقارير الإمداد، وسجل الحركات */
+
+/* ===== شارة الدور ===== */
+.role-chip.base_manager{color:#9ccfff}
+.role-badge.base_manager{background:#1f3550;border-color:#4f86c6;color:#cfe3ff}
+.avatar.base_manager{background:#264a73}
+
+/* ===== المحرر: أزرار الأنواع داخل نافذة الإنشاء + رسالة خطأ الخريطة ===== */
+.req-form .segmented button.active{background:#34507a;border-color:#477ec2;color:#fff}
+.map-error{position:absolute;left:50%;top:12px;transform:translateX(-50%);z-index:1200;background:#3d1c1c;border:1px solid #ff5b5b;color:#ffd6d6;border-radius:8px;padding:8px 14px;font-size:12px;cursor:pointer;max-width:80%}
+
+/* ===== التبعية في البطاقة ===== */
+.relation-box{display:flex;flex-direction:column;gap:6px}
+.relation-box label{display:flex;flex-direction:column;gap:3px;font-size:10px;color:#8892a0}
+.relation-box select{background:#12151c;border:1px solid #374050;color:#e6ebf2;border-radius:5px;padding:5px;font:inherit;font-size:11px}
+.relation-actions{display:flex;gap:6px;flex-wrap:wrap}
+.relation-actions button{background:#2c3340;border:1px solid #477ec2;color:#d1d7e1;border-radius:5px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer}
+.relation-actions button.approve{background:#2d5587;color:#fff}
+.relation-actions button:disabled{opacity:.45;cursor:default}
+
+/* ===== مراجعة العلاقات + اختيار القاعدة ===== */
+.db-review{background:#272317;border:1px solid #6b5627;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.db-review h3{margin:0;font-size:14px;color:#ffd58a}.db-review h3 span{font:700 11px 'JetBrains Mono';color:#dda83c;margin-left:6px}
+.review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.review-grid h5 small{color:#79828f;font-weight:400;margin-left:6px}
+.base-pick{margin-top:-4px}
+.db-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.db-card h5 em{font-style:normal;font:700 10px 'JetBrains Mono';color:#6ea0dd;margin-left:6px}
+.db-card .ni-list{margin:0}
+
+/* ===== اختيار مصدر الإمداد عند الاعتماد ===== */
+.source-pick{display:flex;flex-direction:column;gap:6px;margin:8px 0}
+.source-pick label,.cross-reason{display:flex;flex-direction:column;gap:4px;font-size:11px;color:#a9b4c4}
+.source-pick select,.cross-reason input{background:#12151c;border:1px solid #374050;color:#e6ebf2;border-radius:6px;padding:7px;font:inherit;font-size:12px}
+.cross-reason{color:#ffb36b}
+.req-history{margin:0 0 8px;padding-inline-start:18px;font-size:11px;color:#d1d7e1;display:flex;flex-direction:column;gap:3px}
+.req-history small{color:#79828f;margin-left:6px}
+
+/* نسبة نصية بجانب الكمية (بدون خلفية شريط المستوى) */
+.db-sum small.pct-text{display:inline;background:none!important;font-weight:700}
+.pct-text.green{color:#9ae45c}.pct-text.amber{color:#ffb36b}.pct-text.red{color:#ff7b7b}
+
+/* ===== جدول إضافة المخزون ===== */
+.stock-add td{vertical-align:middle}.stock-add td small{display:block;font-size:9px;color:#79828f}
+.stock-add input{width:110px}
+.items-table td.bad,.srep-table td.bad{color:#ff7b7b}
+
+/* ===== تقارير الإمداد ===== */
+.supply-report{margin-top:26px;display:flex;flex-direction:column;gap:10px}
+.supply-report .page-heading button{margin-left:auto}
+.srep-filters{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.srep-filters label{display:flex;flex-direction:column;gap:3px;font-size:10px;color:#8892a0}
+.srep-filters select,.srep-filters input{background:#12151c;border:1px solid #374050;color:#e6ebf2;border-radius:6px;padding:6px 8px;font:inherit;font-size:11px;min-width:130px}
+.srep-note{font-size:11px;color:#8fa7c4;margin:4px 0}
+.srep-warn{font-size:11px;color:#ffb36b;background:#2b2216;border:1px solid #6b5627;border-radius:6px;padding:6px 10px;margin:0}
+.srep-scroll{overflow-x:auto;max-width:100%}
+.srep-table{width:100%;border-collapse:collapse;font-size:11px;margin:4px 0 8px}
+.srep-table th{padding:6px 8px;font-size:9px;color:#79828f;text-align:start;border-bottom:1px solid #374050;white-space:nowrap;background:none}
+.srep-table td{padding:6px 8px;border-bottom:1px solid #2c3340;color:#d1d7e1;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.srep-table td:first-child{font-family:inherit}
+.srep-table td small{display:block;font-size:9px;color:#79828f;font-family:inherit}
+.srep-table td.strong{color:#fff;font-weight:700}
+.srep-table td.muted{color:#79828f}
+.srep-table td.sim,.srep-table tr.sim td{color:#c9b7ff}
+.srep-table tr.archived td{opacity:.6}
+.srep-base{background:#1c212b;border:1px solid #2c3340;border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.srep-base h4{margin:0 0 6px;font-size:13px;color:#fff}.srep-base h4 small{color:#79828f;font-weight:400;margin-left:6px}
+
+/* ===== سجل الحركات ===== */
+.movements{margin-top:24px}
+.movements .filter-chips select{background:#232832;border:1px solid #374050;color:#a9b4c4;border-radius:18px;padding:5px 10px;font:inherit;font-size:11px}
+.mv-badge{display:inline-block;padding:2px 7px;border-radius:9px;font-size:10px;background:#2c3340;color:#d1d7e1}
+.mv-badge.external_add{background:#1f3550;color:#cfe3ff}
+.mv-badge.transfer{background:#2d2f4a;color:#d8d9ff}
+.mv-badge.dispatch{background:#3a2f17;color:#ffd58a}
+.mv-badge.delivery{background:#1d3a26;color:#bff0c9}
+.mv-badge.return{background:#33283d;color:#e6cdf7}
+.mv-badge.consumption{background:#2e2547;color:#c9b7ff}
+.pager{display:flex;align-items:center;gap:10px;justify-content:center;font-size:11px;color:#a9b4c4;margin-top:6px}
+.pager button{background:#232832;border:1px solid #374050;color:#d1d7e1;border-radius:6px;padding:4px 12px;cursor:pointer}
+.pager button:disabled{opacity:.4;cursor:default}
+
+@media (max-width: 900px){
+  .db-grid.three{grid-template-columns:1fr}
+  .srep-filters select,.srep-filters input{min-width:110px}
+}
+
+/* مراكز القاعدة (مستودعات فقط — الوحدات تتبع القاعدة مباشرة) */
+.db-fsb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
+
+
+/* ===== الجلسة تغيّرت من تبويب ثاني ===== */
+.session-switched{position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:3000;max-width:760px;background:#3d2a12;border:1px solid #dda83c;color:#ffe2a8;border-radius:10px;padding:10px 16px;font-size:12px;line-height:1.6;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.45)}
+
+/* ===== المركز الرئيسي (الرياض) ===== */
+.azm-icon .node.hq{width:42px;height:42px;border-radius:6px;background:#14171d;border:2px solid #c49a4d;color:#f3c85e}
+.main-base-emblem{display:block;width:32px;height:32px;background:currentColor;mask-image:url('/src/assets/main-base-emblem.png');mask-mode:luminance;mask-size:contain;mask-position:center;mask-repeat:no-repeat}
+.ni-icon.hq{background:#14171d;border:2px solid #c49a4d;color:#f3c85e}
+.ni-icon.hq .main-base-emblem{width:22px;height:22px}
+.legend .legend-emblem{display:inline-block;vertical-align:-2px;color:#f3c85e}
+.legend .legend-emblem .main-base-emblem{width:12px;height:12px}
+.db-hq{display:flex;align-items:center;gap:12px;background:#221d33;border:1px solid #5b4a9a;border-radius:12px;padding:12px 16px}
+.db-hq>div{flex:1}.db-hq h3{margin:0;font-size:15px;color:#fff}.db-hq small{color:#b9add9;font-size:11px;line-height:1.5}
+.hq-stat{font:700 11px 'JetBrains Mono';color:#d8ccff;background:#2d2547;border-radius:8px;padding:5px 9px;white-space:nowrap}
+.db-base-head button.hq-btn,.cta-request.hq{border-color:#8f7be0}
+.cta-request.hq{background:linear-gradient(135deg,#2a2448,#1f2a44)}
+.tag.hq{background:#2d2547;color:#d8ccff}
+.request.base-req{border-left:3px solid #8f7be0}
+.hq-tag{font-style:normal;color:#b39cff;margin-left:6px}
+.hq-note{color:#c9b7ff!important}
+
+/* ===== اعتمادات قديمة بلا إرسال ===== */
+.stalled-box{border:1px solid #6b5627;border-radius:10px;padding:8px 10px;background:#272317}
+.stalled-row{display:flex;align-items:center;gap:8px;justify-content:space-between;font-size:11px;color:#e8d6ad;padding:4px 0;border-bottom:1px solid #3a3220}
+.stalled-row button{background:#3a3220;border:1px solid #dda83c;color:#ffd58a;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer}
+
+/* ===== أرشفة وحدة + رصيد فوق السعة ===== */
+.archive-btn{background:#2c2228;border:1px solid #a14d4d;color:#ffb8b8;border-radius:6px;padding:4px 8px;font-size:10px;cursor:pointer;white-space:nowrap}
+.archive-btn:hover{background:#4a2a2a}
+.depot-row.over b{color:#ff9b6b}
+
+/* ===== نموذج الطلب بالكمية ===== */
+.item-row.qty-mode .qty-input{width:120px}
+.item-full{color:#ffb36b;font-size:10px;line-height:1.5}
+.items-table small.bad{color:#ff7b7b}
+.catalog-page .cat-active{flex-direction:row;align-items:center;gap:8px}
+.fill-quantity{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.fill-quantity .fill,.map-requests button,.map-request-history button{background:#172b46;color:#cadcf5;border:1px solid #365d88;border-radius:5px;padding:5px 8px;font:inherit;cursor:pointer}
+.fill-quantity .fill.active{border-color:#68a5f7;color:#9ec9ff}
+.fill-quantity button:disabled{opacity:.45;cursor:default}
+.stock-room-summary{display:block;color:#9baec6;font-size:10px;line-height:1.7}
+.item-row.qty-mode .stock-room-summary{grid-column:1/-1}
+.request-current-limits > div { display: grid; gap: 5px; margin: 12px 0; }
+.request-current-limits > p { font-size: 12px; color: var(--muted); }
+/* التموين الشامل في نافذة التحويل: معاينة لكل مورد */
+.bulk-fill-btn{align-self:flex-start;background:#172b46;color:#cadcf5;border:1px solid #365d88;border-radius:6px;padding:7px 14px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.bulk-fill-btn:hover:not(:disabled){border-color:#68a5f7;color:#9ec9ff}
+.bulk-fill-btn:disabled{opacity:.45;cursor:default}
+.bulk-fill-hint{margin:0;color:#9aa2af;font-size:11px;line-height:1.6;unicode-bidi:plaintext}
+.bulk-fill-list{display:flex;flex-direction:column;gap:6px;max-height:46vh;overflow-y:auto;padding-inline-end:4px}
+.bulk-fill-row{display:grid;grid-template-columns:1fr 150px;gap:4px 10px;align-items:end;background:#161a22;border:1px solid #2a313d;border-radius:6px;padding:8px 10px}
+.bulk-fill-row.off{opacity:.55}
+.req-form .bulk-fill-row label.pick{flex-direction:row;align-items:center;gap:8px;color:#e2e7ef;font-size:12px}
+.req-form .bulk-fill-row label.qty{gap:3px;font-size:10px}
+.req-form .bulk-fill-row label.qty input{padding:6px 8px}
+.bulk-fill-row .meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:2px 12px;align-items:baseline}
+.bulk-fill-row .meta small{color:#79828f;font-size:10px}
+
+/* ===== مرحلة الطلب والخطوة التالية + مباشرة مسؤول القاعدة ===== */
+.req-stage{display:flex;flex-direction:column;gap:3px;margin:6px 0;padding:6px 9px;border-radius:6px;border:1px solid #2f4566;background:#15223a;unicode-bidi:plaintext}
+.req-stage b{font-size:11px;color:#cfe0f7}
+.req-stage small{font-size:10px;color:#9baec6;line-height:1.6}
+.req-stage.stage-assigned,.req-stage.stage-pending_heli{border-color:#365d88;background:#172b46}
+.req-stage.stage-assigned_blocked{border-color:#7a6a32;background:#272317}
+.req-stage.stage-assigned_blocked b,.stage-legacy,.stage-paused{color:#f3c85e}
+.req-stage.stage-approved{border-color:#2f5a44;background:#16261f}
+.req-stage.stage-rejected{border-color:#5a3a3a;background:#241a1d}
+.stage-legacy,.stage-paused{display:block;font-size:10px;line-height:1.6}
+.request-list .execute-btn,.req-actions .execute-btn{background:#3a7bd5;border-color:#3a7bd5;color:#fff}
+.req-actions .reopen-btn{background:#3a3220;border:1px solid #dda83c;color:#ffd58a;border-radius:6px;padding:6px 12px;cursor:pointer}
+.exec-box{border:1px solid #365d88;border-radius:10px;padding:8px 10px;background:#121c2e}
+.exec-failures{margin:4px 0;padding-inline-start:16px;font-size:11px;line-height:1.7;unicode-bidi:plaintext}
+.exec-blocked{border:1px solid #7a6a32;background:#272317;border-radius:8px;padding:8px 10px;margin:8px 0;color:#e8d6ad;font-size:11px}
+.exec-blocked small{color:#c9b98e}
+.exec-panel{border:1px solid #365d88;background:#121c2e;border-radius:8px;padding:8px 12px;margin:8px 0;font-size:12px}
+.exec-panel ul{margin:4px 0;padding-inline-start:16px}
+.source-pick .decide-mode{margin-top:8px}
+.items-table.qty-trail{table-layout:fixed;width:100%;font-size:11px}
+.items-table.qty-trail th{font-size:10px;line-height:1.3;white-space:normal;vertical-align:bottom}
+.items-table.qty-trail td{padding:5px 4px;overflow-wrap:anywhere}
+.items-table.qty-trail th:first-child,.items-table.qty-trail td:first-child{width:28%}
+/* حالة المحاكاة في الشريط: ظاهرة لكل الأدوار */
+.statusbar .sim-status{font-weight:700;border-radius:10px;padding:1px 8px}
+.statusbar .sim-status.running{color:#9ae45c;background:#1f3a2c}
+.statusbar .sim-status.paused{color:#f3c85e;background:#3a3420}
+/* مراجعة سياسة الموارد والنموذج */
+.policy-review .ni-list li{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.policy-review .ni-list button{background:#172b46;color:#cadcf5;border:1px solid #365d88;border-radius:5px;padding:3px 8px;font-size:10px;cursor:pointer}
+.starter-preview{display:flex;flex-wrap:wrap;gap:4px 10px}
+.ai-item-blocked{opacity:.7}
+.ai-item-blocked small{color:#f3c85e}
+.command-summary{margin:2px 0 12px;padding:12px;border:1px solid #354658;border-radius:12px;background:linear-gradient(130deg,#1b2a3d,#17202d);box-shadow:0 8px 20px #080d1690}
+.summary-title{display:block;margin-bottom:10px;font-size:13px;color:#c8d8eb}
+.summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.summary-grid span{display:flex;flex-direction:column;gap:2px;padding:9px;border:1px solid #3b4a5d;border-radius:8px;background:#101925}
+.summary-grid strong{font:700 22px/1.2 ui-monospace,monospace;color:#d4e8ff}
+.summary-grid small{font-size:11px;color:#9cb3ca}
+.summary-grid .needs-action{border-color:#987048;background:#342719}
+.summary-grid .needs-action strong{color:#ffd38d}
+.alert-row.critical,.alert-row.depleted{border-inline-start:3px solid #e4766a}
+.base-stock-alerts{border-top:1px solid #7e6240!important;background:#241e1a;padding:10px!important;border-radius:9px;margin:9px 0}
+.base-stock-list{display:grid;gap:6px}.base-stock-list>div{display:flex;align-items:center;justify-content:space-between;padding:7px 9px;border-radius:6px;background:#302721}
+.base-stock-list span{display:flex;flex-direction:column;gap:1px}.base-stock-list small{color:#d2bda0}.base-stock-list strong{color:#ffd295;font:700 14px ui-monospace,monospace}

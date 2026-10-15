@@ -1,0 +1,39 @@
+/* بطاقة بيانات النقطة على الخريطة */
+.node-info{position:absolute;top:12px;left:58px;z-index:1000;width:300px;max-height:calc(100% - 24px);overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding:12px 14px;background:#141921f2;border:1px solid #374050;border-radius:10px;box-shadow:0 12px 30px #000b;color:#d1d7e1;animation:fadeIn .15s ease-out}
+
+.node-info header{display:flex;align-items:center;gap:10px;padding-bottom:8px;border-bottom:1px solid #2c3340}
+
+.node-info header div{flex:1;min-width:0}
+.node-info header b{display:block;font-size:14px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.node-info header small{font-size:10px;color:#8892a0}
+
+.node-info header button{background:none;border:0;color:#8892a0;font-size:14px;cursor:pointer;padding:4px 6px;border-radius:4px}
+.node-info header button:hover{background:#272d3b;color:#fff}
+
+.ni-icon{width:32px;height:32px;flex:none;display:grid;place-items:center;border-radius:7px;font-size:15px;color:#fff;background:#326098}
+.ni-icon.main{background:#14171d;border:2px solid #c49a4d;color:#f3c85e}
+.ni-icon.fsb{background:#132127;border:2px solid #5aaee0;color:#72c6f1}
+
+.ni-stats{display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:6px;align-items:center}
+.ni-stats span{display:flex;flex-direction:column;align-items:center}
+.ni-stats b{font:700 12px 'JetBrains Mono';color:#fff}
+.ni-stats small{font-size:8px;color:#79828f}
+.ni-stats .chip{align-self:center}
+
+.ni-meters .meter{grid-template-columns:70px 1fr 34px;margin:3px 0}
+
+.node-info h5{margin:4px 0 0;font-size:11px;color:#9aa2af;display:flex;align-items:center;gap:6px}
+.node-info h5 em{font-style:normal;font-size:9px;background:#272d3b;border-radius:8px;padding:1px 7px;color:#d1d7e1}
+
+.ni-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.ni-list li{display:flex;justify-content:space-between;gap:8px;padding:6px 8px;border-radius:5px;background:#1a1f29;font-size:11px}
+.ni-list li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ni-list li b{font:600 10px 'JetBrains Mono';color:#639add;white-space:nowrap}
+
+.ni-muted{font-size:10px;color:#79828f;margin:0}
+
+.ni-coords{font-size:9px;color:#69707b;padding-top:6px;border-top:1px solid #242a36}
+
+.ni-action{margin-top:2px;padding:8px;border:0;border-radius:6px;background:linear-gradient(135deg,#243659,#305d94);color:#fff;font-weight:700;font-size:11px;cursor:pointer}
+
+.azm-icon .node.selected{filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #639add);transform:translate(-50%,-50%) scale(1.15)}

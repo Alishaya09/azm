@@ -1,0 +1,138 @@
+/* نوافذ كيف يعمل؟ / OPTECHO™ / SITREP وزر التحديث */
+
+/* ===== نوافذ الشريط العلوي ===== */
+.modal.wide{width:760px}
+
+.modal-actions{display:flex;align-items:center;gap:8px}
+
+.modal-actions .sit-refresh{border:0;border-radius:6px;padding:7px 14px;color:#fff;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.modal-actions .sit-refresh:disabled{opacity:.6}
+
+.modal>header h3{display:flex;align-items:center;gap:10px}
+
+.sit-icon{font-size:22px}
+.modal>header h3 small{display:block;font:500 10px 'JetBrains Mono';color:#79828f;margin-top:3px;letter-spacing:.5px}
+
+.how-card{background:#1c212b;border:1px solid #2c3340;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px}
+
+.how-card h4{margin:0;display:flex;align-items:center;gap:8px;font-size:13px;color:#dfe8f4}
+
+.how-card h4 i{width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:#34629b;color:#fff;font:700 11px 'JetBrains Mono';font-style:normal}
+
+.how-card p{margin:0;font-size:12px;line-height:1.7;color:#c2c9d4}
+.how-note{font-size:10.5px!important;color:#79828f!important}
+
+.score-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+.score,.dos-grid>div{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px;border-radius:8px;border:1px solid}
+
+.score small,.dos-grid small{font-size:11px;color:#d1d7e1}
+.score b{font:700 24px 'JetBrains Mono'}
+.dos-grid b{font-size:13px}
+
+.score.red,.dos-grid .red{background:#3a2222;border-color:#7a3b3b}
+.score.red b,.dos-grid .red b{color:#ff7b7b}
+
+.score.amber,.dos-grid .amber{background:#3a3420;border-color:#7a6a32}
+.score.amber b,.dos-grid .amber b{color:#f3c85e}
+
+.dos-grid .green{background:#22381e;border-color:#4b7a3a}
+.dos-grid .green b{color:#9ae45c}
+
+.formula{display:block;padding:10px 12px;border-radius:6px;background:#1c3340;border:1px solid #2f5a72;color:#8fd3f5;font:600 12px 'JetBrains Mono';text-align:center}
+
+.threat-row{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;border-radius:6px;font-size:12px}
+
+.threat-row b{font:700 12px 'JetBrains Mono'}
+.threat-row em{font-family:inherit;font-style:normal;font-weight:700}
+
+.threat-row.red{background:#3a2222;color:#ff8a8a}
+.threat-row.amber{background:#3a3420;color:#f3c85e}
+.threat-row.green{background:#22381e;color:#9ae45c}
+
+.dos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+
+.opt-intro{margin:0;font-size:13px;line-height:1.8;color:#c2c9d4}
+.opt-intro b{color:#fff}
+
+.sensor-card{display:flex;gap:14px;padding:14px;border-radius:10px;background:#1c212b;border:1px solid #2c3340}
+
+.sensor-card>div{flex:1;min-width:0}
+.sensor-icon{font-size:26px;line-height:1}
+
+.sensor-card header{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.sensor-card header b{font-size:13px;color:#fff}
+
+.sensor-card .online{font-size:9px;font-weight:700;color:#9ae45c;background:#22381e;padding:2px 8px;border-radius:9px}
+
+.sensor-card p{margin:6px 0;font-size:12px;line-height:1.7;color:#c2c9d4}
+.sensor-card small{font:10px 'JetBrains Mono';color:#79828f}
+
+.sensor-card.engine{background:#1f2739;border-color:#34629b}
+.sensor-card.engine header b{color:#639add}
+
+.sit-h{margin:0;font-size:12px;color:#9aa2af}
+
+.sit-table-wrap{overflow-x:auto;border:1px solid #2c3340;border-radius:8px}
+
+.sit-table{margin:0;width:100%;border-collapse:collapse;background:#1a1f29;font-size:12px}
+
+.sit-table th{padding:9px 10px;text-align:start;font-size:10px;color:#8892a0;background:#212631;white-space:nowrap}
+
+.sit-table td{padding:10px;border-top:1px solid #242a36;color:#d1d7e1;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.sit-table td:nth-child(2){font-family:inherit}
+
+.sit-table td.bad,.sit-table td.st.critical{color:#ff7b7b;font-weight:700}
+.sit-table td.warn,.sit-table td.st.warning{color:#f3c85e}
+.sit-table td.st.ready{color:#9ae45c}
+
+.sit-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+
+.sit-kpis>div{display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px;border-radius:10px;background:#1c212b;border:1px solid #2c3340}
+
+.sit-kpis b{font:700 26px 'JetBrains Mono';color:#c2c9d4}
+.sit-kpis .green b{color:#9ae45c}
+.sit-kpis .red b{color:#ff7b7b}
+.sit-kpis small{font-size:11px;color:#8892a0}
+
+.sit-box{padding:12px 14px;border-radius:10px;border:1px solid}
+.sit-box h5{margin:0 0 6px;font-size:13px}
+.sit-box p{margin:3px 0;font-size:12px;line-height:1.7}
+
+.sit-box.red{background:#3a2222;border-color:#7a3b3b}
+.sit-box.red h5{color:#ff8a8a}
+.sit-box.red p{color:#f0d6d6}
+
+.sit-box.green{background:#22381e;border-color:#4b7a3a}
+.sit-box.green h5{color:#9ae45c;margin:0}
+
+.sit-box.assess{background:#1c212b;border-color:#374050}
+.sit-box.assess h5{color:#639add}
+.sit-box.assess p{color:#d1d7e1}
+
+.topbar .refresh-btn{color:#639add;border-color:#45566f}
+
+.refresh-flash{position:fixed;top:64px;left:50%;transform:translateX(-50%);z-index:7000;padding:8px 16px;border-radius:20px;background:#243659;color:#fff;font-size:12px;font-weight:700;box-shadow:0 8px 20px #000a;animation:fadeIn .15s ease-out}
+
+@media (max-width:640px){
+  .score-grid,.sit-kpis,.dos-grid{grid-template-columns:1fr}
+}
+
+/* ===== شعار المشروع ===== */
+.azm-logo{display:block;user-select:none;-webkit-user-drag:none}
+.azm-logo.badge{width:auto;object-fit:contain;filter:drop-shadow(0 4px 10px #0009)}
+.azm-logo.mark{width:100%;height:100%;border-radius:50%;object-fit:cover}
+/* صفحة الدخول: الشعار الكامل بدل حرف A */
+.emblem{width:auto;height:auto;border:0;clip-path:none;background:none;margin-bottom:4px}
+.emblem .azm-logo{height:150px;width:auto}
+/* الشريط العلوي */
+.brand>.brand-logo{height:58px;width:auto}
+/* المساعد: الشعار بشكل الدرع (بدون دائرة) */
+.ai-avatar,.ai-avatar.sm,.ai-home-logo{width:auto;height:auto;padding:0;background:none;border:0;border-radius:0;box-shadow:none;overflow:visible}
+.ai-avatar .azm-logo{height:40px}
+.ai-avatar.sm .azm-logo{height:32px}
+.ai-home-logo .azm-logo{height:120px;filter:drop-shadow(0 8px 24px #3a7bd555)}
+/* التقارير و SITREP */
+.sit-logo{height:44px!important}
+.report-heading{align-items:center;gap:12px}
+.report-logo{height:46px!important}

@@ -1,0 +1,1241 @@
+{
+  "source": "rag_data.zip/documents/catalog/items.json",
+  "note": "Resource names and unit conversions only. Fictional SOP and network are excluded. Capacities are editable demo defaults, not military planning rules.",
+  "items": [
+    {
+      "key": "azm_bottled_water",
+      "item": "bottled water",
+      "nameAr": "مياه شرب معبأة",
+      "supplyClass": "I",
+      "stockUnit": "liter",
+      "perUnit": {
+        "liter": 1,
+        "carton": 18,
+        "pallet": 1080
+      },
+      "aliases": {
+        "ar": [
+          "موية",
+          "ماء",
+          "مياه شرب",
+          "ماي",
+          "مياه شرب معبأة",
+          "مياه",
+          "مويه"
+        ],
+        "en": [
+          "water",
+          "bottled water",
+          "drinking water"
+        ]
+      },
+      "maxPerRequest": {
+        "carton": 200,
+        "pallet": 10,
+        "liter": 5000
+      },
+      "suggestedCapacity": {
+        "main": 1080000,
+        "fsb": 108000,
+        "unit": 10800
+      }
+    },
+    {
+      "key": "azm_mre",
+      "item": "MRE",
+      "nameAr": "وجبة جاهزة للأكل",
+      "supplyClass": "I",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1,
+        "box": 12
+      },
+      "aliases": {
+        "ar": [
+          "وجبة جاهزة",
+          "وجبات جاهزة",
+          "وجبة ميدانية",
+          "وجبات ميدانية",
+          "أرزاق",
+          "وجبة جاهزة للأكل",
+          "وجبة",
+          "وجبات"
+        ],
+        "en": [
+          "MRE",
+          "meal ready-to-eat",
+          "MREs",
+          "meals ready-to-eat"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 500,
+        "box": 50
+      },
+      "suggestedCapacity": {
+        "main": 60000,
+        "fsb": 6000,
+        "unit": 600
+      }
+    },
+    {
+      "key": "azm_canned_food",
+      "item": "canned food",
+      "nameAr": "أغذية معلبة",
+      "supplyClass": "I",
+      "stockUnit": "carton",
+      "perUnit": {
+        "carton": 1
+      },
+      "aliases": {
+        "ar": [
+          "معلبات",
+          "أكل معلب",
+          "أغذية معلبة"
+        ],
+        "en": [
+          "canned food",
+          "canned goods"
+        ]
+      },
+      "maxPerRequest": {
+        "carton": 60
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_dates",
+      "item": "dates",
+      "nameAr": "تمر",
+      "supplyClass": "I",
+      "stockUnit": "kg",
+      "perUnit": {
+        "kg": 1,
+        "carton": 5
+      },
+      "aliases": {
+        "ar": [
+          "تمر",
+          "تمور",
+          "تمرة"
+        ],
+        "en": [
+          "dates"
+        ]
+      },
+      "maxPerRequest": {
+        "carton": 40,
+        "kg": 200
+      },
+      "suggestedCapacity": {
+        "main": 20000,
+        "fsb": 2000,
+        "unit": 200
+      }
+    },
+    {
+      "key": "azm_rice",
+      "item": "rice",
+      "nameAr": "أرز",
+      "supplyClass": "I",
+      "stockUnit": "kg",
+      "perUnit": {
+        "kg": 1,
+        "bag": 25
+      },
+      "aliases": {
+        "ar": [
+          "رز",
+          "أرز"
+        ],
+        "en": [
+          "rice"
+        ]
+      },
+      "maxPerRequest": {
+        "bag": 40,
+        "kg": 500
+      },
+      "suggestedCapacity": {
+        "main": 100000,
+        "fsb": 10000,
+        "unit": 1000
+      }
+    },
+    {
+      "key": "azm_combat_uniform",
+      "item": "combat uniform",
+      "nameAr": "زي ميداني",
+      "supplyClass": "II",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "بدلة ميدان",
+          "بدلات ميدان",
+          "بدلة عسكرية",
+          "بدلات عسكرية",
+          "زي ميداني",
+          "بدلة",
+          "بدلات"
+        ],
+        "en": [
+          "combat uniform",
+          "field uniform"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 120
+      },
+      "suggestedCapacity": {
+        "main": 12000,
+        "fsb": 1200,
+        "unit": 120
+      }
+    },
+    {
+      "key": "azm_combat_boots",
+      "item": "combat boots",
+      "nameAr": "أحذية ميدانية",
+      "supplyClass": "II",
+      "stockUnit": "pair",
+      "perUnit": {
+        "pair": 1
+      },
+      "aliases": {
+        "ar": [
+          "بساطير",
+          "أحذية عسكرية",
+          "أحذية ميدانية",
+          "أحذية",
+          "بسطار"
+        ],
+        "en": [
+          "combat boots",
+          "military boots"
+        ]
+      },
+      "maxPerRequest": {
+        "pair": 120
+      },
+      "suggestedCapacity": {
+        "main": 12000,
+        "fsb": 1200,
+        "unit": 120
+      }
+    },
+    {
+      "key": "azm_helmet",
+      "item": "helmet",
+      "nameAr": "خوذة واقية",
+      "supplyClass": "II",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "خوذة",
+          "خوذ",
+          "خوذة واقية"
+        ],
+        "en": [
+          "helmet",
+          "combat helmet"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 60
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_sleeping_bag",
+      "item": "sleeping bag",
+      "nameAr": "كيس نوم",
+      "supplyClass": "II",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "كيس نوم",
+          "أكياس نوم"
+        ],
+        "en": [
+          "sleeping bag"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 80
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_tent",
+      "item": "tent",
+      "nameAr": "خيمة ميدانية",
+      "supplyClass": "II",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "خيمة",
+          "خيام",
+          "خيمة ميدانية"
+        ],
+        "en": [
+          "tent"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 20
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_flashlight",
+      "item": "flashlight",
+      "nameAr": "مصباح يدوي",
+      "supplyClass": "II",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "كشاف يدوي",
+          "كشافات يدوية",
+          "تورش",
+          "تورشات",
+          "مصباح يدوي",
+          "مصباح",
+          "مصابيح"
+        ],
+        "en": [
+          "flashlight",
+          "torch"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 50
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_work_gloves",
+      "item": "work gloves",
+      "nameAr": "قفازات عمل",
+      "supplyClass": "II",
+      "stockUnit": "pair",
+      "perUnit": {
+        "pair": 1
+      },
+      "aliases": {
+        "ar": [
+          "قفازات عمل",
+          "قفازات شغل"
+        ],
+        "en": [
+          "work gloves"
+        ]
+      },
+      "maxPerRequest": {
+        "pair": 100
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_tool_kit",
+      "item": "tool kit",
+      "nameAr": "حقيبة أدوات",
+      "supplyClass": "II",
+      "stockUnit": "kit",
+      "perUnit": {
+        "kit": 1
+      },
+      "aliases": {
+        "ar": [
+          "شنطة عدة",
+          "شنط عدة",
+          "حقيبة عدة",
+          "حقائب عدة",
+          "حقيبة أدوات"
+        ],
+        "en": [
+          "tool kit",
+          "toolkit"
+        ]
+      },
+      "maxPerRequest": {
+        "kit": 10
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_diesel",
+      "item": "diesel",
+      "nameAr": "وقود ديزل",
+      "supplyClass": "III",
+      "stockUnit": "liter",
+      "perUnit": {
+        "liter": 1,
+        "barrel": 200,
+        "jerrycan": 20
+      },
+      "aliases": {
+        "ar": [
+          "ديزل",
+          "سولار",
+          "وقود ديزل"
+        ],
+        "en": [
+          "diesel",
+          "diesel fuel"
+        ]
+      },
+      "maxPerRequest": {
+        "liter": 5000,
+        "barrel": 30,
+        "jerrycan": 40
+      },
+      "suggestedCapacity": {
+        "main": 600000,
+        "fsb": 60000,
+        "unit": 6000
+      }
+    },
+    {
+      "key": "azm_gasoline",
+      "item": "gasoline",
+      "nameAr": "بنزين",
+      "supplyClass": "III",
+      "stockUnit": "liter",
+      "perUnit": {
+        "liter": 1,
+        "barrel": 200,
+        "jerrycan": 20
+      },
+      "aliases": {
+        "ar": [
+          "بنزين"
+        ],
+        "en": [
+          "gasoline",
+          "petrol"
+        ]
+      },
+      "maxPerRequest": {
+        "liter": 2000,
+        "jerrycan": 30,
+        "barrel": 15
+      },
+      "suggestedCapacity": {
+        "main": 300000,
+        "fsb": 30000,
+        "unit": 3000
+      }
+    },
+    {
+      "key": "azm_engine_oil",
+      "item": "engine oil",
+      "nameAr": "زيت محرك",
+      "supplyClass": "III",
+      "stockUnit": "liter",
+      "perUnit": {
+        "liter": 1,
+        "can": 4
+      },
+      "aliases": {
+        "ar": [
+          "زيت مكينة",
+          "زيت محرك",
+          "زيت ماكينة"
+        ],
+        "en": [
+          "engine oil",
+          "motor oil"
+        ]
+      },
+      "maxPerRequest": {
+        "liter": 400,
+        "can": 60
+      },
+      "suggestedCapacity": {
+        "main": 40000,
+        "fsb": 4000,
+        "unit": 400
+      }
+    },
+    {
+      "key": "azm_hydraulic_fluid",
+      "item": "hydraulic fluid",
+      "nameAr": "سائل هيدروليكي",
+      "supplyClass": "III",
+      "stockUnit": "liter",
+      "perUnit": {
+        "liter": 1,
+        "can": 4
+      },
+      "aliases": {
+        "ar": [
+          "زيت هيدروليك",
+          "سائل هيدروليكي"
+        ],
+        "en": [
+          "hydraulic fluid",
+          "hydraulic oil"
+        ]
+      },
+      "maxPerRequest": {
+        "liter": 200,
+        "can": 30
+      },
+      "suggestedCapacity": {
+        "main": 20000,
+        "fsb": 2000,
+        "unit": 200
+      }
+    },
+    {
+      "key": "azm_grease",
+      "item": "grease",
+      "nameAr": "شحم تشحيم",
+      "supplyClass": "III",
+      "stockUnit": "can",
+      "perUnit": {
+        "can": 1
+      },
+      "aliases": {
+        "ar": [
+          "شحم",
+          "قريس",
+          "شحم تشحيم"
+        ],
+        "en": [
+          "grease"
+        ]
+      },
+      "maxPerRequest": {
+        "can": 30
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_coolant",
+      "item": "coolant",
+      "nameAr": "سائل تبريد",
+      "supplyClass": "III",
+      "stockUnit": "liter",
+      "perUnit": {
+        "liter": 1,
+        "can": 4
+      },
+      "aliases": {
+        "ar": [
+          "ماء رديتر",
+          "سائل تبريد",
+          "ماي رديتر"
+        ],
+        "en": [
+          "coolant",
+          "antifreeze"
+        ]
+      },
+      "maxPerRequest": {
+        "liter": 200,
+        "can": 30
+      },
+      "suggestedCapacity": {
+        "main": 20000,
+        "fsb": 2000,
+        "unit": 200
+      }
+    },
+    {
+      "key": "azm_sandbag",
+      "item": "sandbag",
+      "nameAr": "كيس رمل",
+      "supplyClass": "IV",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "كيس رمل",
+          "أكياس رمل",
+          "شوال رمل",
+          "شوالات رمل",
+          "رمل"
+        ],
+        "en": [
+          "sandbag",
+          "sand bag"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 2000
+      },
+      "suggestedCapacity": {
+        "main": 200000,
+        "fsb": 20000,
+        "unit": 2000
+      }
+    },
+    {
+      "key": "azm_barbed_wire",
+      "item": "barbed wire",
+      "nameAr": "سلك شائك",
+      "supplyClass": "IV",
+      "stockUnit": "roll",
+      "perUnit": {
+        "roll": 1
+      },
+      "aliases": {
+        "ar": [
+          "سلك شائك",
+          "شبك شائك",
+          "شائك"
+        ],
+        "en": [
+          "barbed wire",
+          "concertina wire"
+        ]
+      },
+      "maxPerRequest": {
+        "roll": 50
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_plywood",
+      "item": "plywood",
+      "nameAr": "لوح خشب رقائقي",
+      "supplyClass": "IV",
+      "stockUnit": "sheet",
+      "perUnit": {
+        "sheet": 1
+      },
+      "aliases": {
+        "ar": [
+          "أبلكاش",
+          "خشب أبلكاش",
+          "لوح خشب رقائقي",
+          "خشب",
+          "لوح خشب",
+          "ألواح خشب"
+        ],
+        "en": [
+          "plywood"
+        ]
+      },
+      "maxPerRequest": {
+        "sheet": 100
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_barrier_picket",
+      "item": "barrier picket",
+      "nameAr": "وتد تثبيت معدني",
+      "supplyClass": "IV",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "وتد حديد",
+          "أوتاد حديد",
+          "وتد",
+          "أوتاد",
+          "وتد تثبيت معدني"
+        ],
+        "en": [
+          "picket",
+          "metal stake"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 300
+      },
+      "suggestedCapacity": {
+        "main": 30000,
+        "fsb": 3000,
+        "unit": 300
+      }
+    },
+    {
+      "key": "azm_first_aid_kit",
+      "item": "first aid kit",
+      "nameAr": "حقيبة إسعافات أولية",
+      "supplyClass": "VIII",
+      "stockUnit": "kit",
+      "perUnit": {
+        "kit": 1
+      },
+      "aliases": {
+        "ar": [
+          "شنطة إسعافات أولية",
+          "شنط إسعافات أولية",
+          "حقيبة إسعاف",
+          "حقائب إسعاف",
+          "حقيبة إسعافات أولية"
+        ],
+        "en": [
+          "first aid kit",
+          "medical kit"
+        ]
+      },
+      "maxPerRequest": {
+        "kit": 40
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_gauze_bandage",
+      "item": "gauze bandage",
+      "nameAr": "ضماد شاش طبي",
+      "supplyClass": "VIII",
+      "stockUnit": "roll",
+      "perUnit": {
+        "roll": 1,
+        "box": 20
+      },
+      "aliases": {
+        "ar": [
+          "شاش",
+          "شاش طبي",
+          "ضماد شاش طبي"
+        ],
+        "en": [
+          "gauze",
+          "gauze bandages"
+        ]
+      },
+      "maxPerRequest": {
+        "box": 40,
+        "roll": 200
+      },
+      "suggestedCapacity": {
+        "main": 80000,
+        "fsb": 8000,
+        "unit": 800
+      }
+    },
+    {
+      "key": "azm_iv_saline",
+      "item": "IV saline",
+      "nameAr": "محلول ملحي وريدي",
+      "supplyClass": "VIII",
+      "stockUnit": "bag",
+      "perUnit": {
+        "bag": 1
+      },
+      "aliases": {
+        "ar": [
+          "مغذي",
+          "محلول ملحي",
+          "مغذي وريدي",
+          "محلول ملحي وريدي"
+        ],
+        "en": [
+          "IV saline",
+          "saline",
+          "IV fluid"
+        ]
+      },
+      "maxPerRequest": {
+        "bag": 100
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_tourniquet",
+      "item": "tourniquet",
+      "nameAr": "رباط ضاغط طبي",
+      "supplyClass": "VIII",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "رباط ضاغط",
+          "أربطة ضاغطة",
+          "تورنيكيت",
+          "تورنيكيتات",
+          "رباط ضاغط طبي"
+        ],
+        "en": [
+          "tourniquet",
+          "TQ"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 80
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_stretcher",
+      "item": "stretcher",
+      "nameAr": "نقالة طبية",
+      "supplyClass": "VIII",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "نقالة",
+          "نقالات",
+          "نقالة طبية",
+          "حمالة"
+        ],
+        "en": [
+          "stretcher",
+          "litter"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 15
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_medical_gloves",
+      "item": "medical gloves",
+      "nameAr": "قفازات طبية",
+      "supplyClass": "VIII",
+      "stockUnit": "box",
+      "perUnit": {
+        "box": 1
+      },
+      "aliases": {
+        "ar": [
+          "قفازات طبية",
+          "قفازات لاتكس"
+        ],
+        "en": [
+          "medical gloves",
+          "latex gloves",
+          "nitrile gloves"
+        ]
+      },
+      "maxPerRequest": {
+        "box": 50
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_truck_tire",
+      "item": "truck tire",
+      "nameAr": "إطار شاحنة",
+      "supplyClass": "IX",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "كفر شاحنة",
+          "كفرات شاحنات",
+          "إطار شاحنة",
+          "إطارات شاحنات",
+          "كفر للشاحنات",
+          "كفرات للشاحنات",
+          "تاير شاحنة",
+          "تواير شاحنات"
+        ],
+        "en": [
+          "truck tire",
+          "truck tyre"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 40
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_light_vehicle_tire",
+      "item": "light vehicle tire",
+      "nameAr": "إطار مركبة خفيفة",
+      "supplyClass": "IX",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "كفر جيب",
+          "كفرات جيبات",
+          "كفر للجيبات",
+          "كفرات للجيبات",
+          "إطار سيارة خفيفة",
+          "إطارات سيارات خفيفة",
+          "إطار مركبة خفيفة"
+        ],
+        "en": [
+          "light vehicle tire",
+          "jeep tire"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 32
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_vehicle_battery",
+      "item": "vehicle battery",
+      "nameAr": "بطارية مركبة",
+      "supplyClass": "IX",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "بطارية سيارة",
+          "بطاريات سيارات",
+          "بطارية للشاحنة",
+          "بطاريات للشاحنات",
+          "بطارية مركبة",
+          "بطاريات مركبات",
+          "بطارية",
+          "بطاريات"
+        ],
+        "en": [
+          "vehicle battery",
+          "truck battery"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 20
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_oil_filter",
+      "item": "oil filter",
+      "nameAr": "مرشح زيت",
+      "supplyClass": "IX",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "فلتر زيت",
+          "فلاتر زيت",
+          "مرشح زيت"
+        ],
+        "en": [
+          "oil filter"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 50
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_air_filter",
+      "item": "air filter",
+      "nameAr": "مرشح هواء",
+      "supplyClass": "IX",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "فلتر هواء",
+          "فلاتر هواء",
+          "فلتر هوا",
+          "فلاتر هوا",
+          "مرشح هواء"
+        ],
+        "en": [
+          "air filter"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 40
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_fuel_filter",
+      "item": "fuel filter",
+      "nameAr": "مرشح وقود",
+      "supplyClass": "IX",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "فلتر ديزل",
+          "فلاتر ديزل",
+          "فلتر وقود",
+          "فلاتر وقود",
+          "مرشح وقود"
+        ],
+        "en": [
+          "fuel filter",
+          "diesel filter"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 40
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_brake_pads",
+      "item": "brake pads",
+      "nameAr": "بطانات فرامل",
+      "supplyClass": "IX",
+      "stockUnit": "set",
+      "perUnit": {
+        "set": 1
+      },
+      "aliases": {
+        "ar": [
+          "فحمات فرامل",
+          "فحمات بريك",
+          "بطانات فرامل"
+        ],
+        "en": [
+          "brake pads"
+        ]
+      },
+      "maxPerRequest": {
+        "set": 20
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_fan_belt",
+      "item": "fan belt",
+      "nameAr": "سير مروحة",
+      "supplyClass": "IX",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "سير مروحة",
+          "سيور مروحة",
+          "سير مكينة",
+          "سيور مكينة"
+        ],
+        "en": [
+          "fan belt",
+          "drive belt"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 20
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_radiator_hose",
+      "item": "radiator hose",
+      "nameAr": "خرطوم المبرد",
+      "supplyClass": "IX",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "لي رديتر",
+          "ليات رديتر",
+          "خرطوم رديتر",
+          "خراطيم رديتر",
+          "خرطوم المبرد"
+        ],
+        "en": [
+          "radiator hose"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 15
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_headlight_bulb",
+      "item": "headlight bulb",
+      "nameAr": "مصباح أمامي للمركبة",
+      "supplyClass": "IX",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1
+      },
+      "aliases": {
+        "ar": [
+          "لمبة كشاف",
+          "لمبات كشافات",
+          "لمبة أمامية",
+          "لمبات أمامية",
+          "مصباح أمامي للمركبة",
+          "لمبة",
+          "لمبات"
+        ],
+        "en": [
+          "headlight bulb"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 40
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    },
+    {
+      "key": "azm_spark_plug",
+      "item": "spark plug",
+      "nameAr": "شمعة إشعال",
+      "supplyClass": "IX",
+      "stockUnit": "piece",
+      "perUnit": {
+        "piece": 1,
+        "set": 4
+      },
+      "aliases": {
+        "ar": [
+          "بوجي",
+          "بواجي",
+          "شمعة احتراق",
+          "شمعات احتراق",
+          "شمعة إشعال"
+        ],
+        "en": [
+          "spark plug",
+          "spark plugs"
+        ]
+      },
+      "maxPerRequest": {
+        "piece": 48,
+        "set": 10
+      },
+      "suggestedCapacity": {
+        "main": 10000,
+        "fsb": 1000,
+        "unit": 100
+      }
+    }
+  ]
+}

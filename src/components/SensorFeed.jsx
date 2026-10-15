@@ -1,0 +1,2 @@
+// بيانات الاستشعار OPTECHO
+function SensorFeed() { const { t } = useLang(); const events=[['⛽','UNIT-01','sensor.e1','-1.6%'],['💊','UNIT-03','sensor.e2','-0.9%'],['🍱','UNIT-02','sensor.e3','-0.4%'],['⚡','UNIT-01','sensor.e4','↑']]; return <section><div className="section-heading"><b>{t('sensor.title')}</b></div><div className="feed">{events.map((e,i)=><div key={i}><i>{e[0]}</i><span><b>{e[1]}</b><small>{t(e[2])}</small></span><em>{e[3]}</em><time>{new Date(Date.now()-i*90000).toLocaleTimeString('en-GB')}</time></div>)}</div></section>; }

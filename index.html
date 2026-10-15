@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ar" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0f17" />
+    <link rel="icon" type="image/png" href="/src/assets/favicon.png" />
+    <title>عَزْم | AZM v2.0 — منصة الإمداد التكتيكي الذكي</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/vendor/leaflet.css" />
+    <!-- التنسيقات: الترتيب مهم (الملف اللاحق يغلب السابق عند التعارض) -->
+    <link rel="stylesheet" href="/src/styles/01-base.css" />
+    <link rel="stylesheet" href="/src/styles/02-map.css" />
+    <link rel="stylesheet" href="/src/styles/03-common.css" />
+    <link rel="stylesheet" href="/src/styles/04-alerts.css" />
+    <link rel="stylesheet" href="/src/styles/05-requests.css" />
+    <link rel="stylesheet" href="/src/styles/06-node-info.css" />
+    <link rel="stylesheet" href="/src/styles/07-scrollbars.css" />
+    <link rel="stylesheet" href="/src/styles/08-assistant.css" />
+    <link rel="stylesheet" href="/src/styles/09-info-modals.css" />
+    <link rel="stylesheet" href="/src/styles/10-text-direction.css" />
+    <link rel="stylesheet" href="/src/styles/11-databases-users.css" />
+    <link rel="stylesheet" href="/src/styles/12-roles-reports.css" />
+    <link rel="stylesheet" href="/src/styles/13-ai-workspaces.css" />
+    <link rel="stylesheet" href="/src/styles/14-reports-dashboard.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- المكتبات (محلية بدون إنترنت) -->
+    <script src="/vendor/react.production.min.js"></script>
+    <script src="/vendor/react-dom.production.min.js"></script>
+    <script src="/vendor/leaflet.js"></script>
+    <script src="/vendor/babel.min.js"></script>
+    <!-- كود الواجهة: Babel يحوّل JSX داخل المتصفح ويشغّل الملفات بهذا الترتيب.
+         كل الملفات تتشارك نفس النطاق العام، فأي ملف جديد لازم ينضاف هنا قبل App.jsx و main.jsx -->
+    <script type="text/babel" data-presets="react" src="/src/core/react.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/i18n/translations.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/i18n/i18n.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/core/api.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/domain/units.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/domain/routing.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/domain/requests.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/domain/hierarchy.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/components/Modal.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/components/Login.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/components/Header.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/components/UnitCard.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/components/SensorFeed.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/components/Bottom.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/map/layout.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/map/NodeInfo.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/map/TacticalMap.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/structure/Structure.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/requests/RouteInfo.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/requests/RequestModal.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/requests/RequestDetails.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/requests/ConvoyCard.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/alerts/Alerts.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/assistant/Assistant.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/modals/HowItWorks.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/modals/Optecho.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/modals/Sitrep.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/pages/Dashboard.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/pages/Inventory.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/pages/Routes.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/reports/ReportTemplate.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/pages/OpsReport.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/pages/Logs.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/pages/ReportsDashboard.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/pages/Reports.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/pages/Databases.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/pages/Users.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/pages/Catalog.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/App.jsx"></script>
+    <script type="text/babel" data-presets="react" src="/src/main.jsx"></script>
+  </body>
+</html>

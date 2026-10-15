@@ -1,0 +1,13 @@
+/* أشرطة التمرير */
+/* أشرطة تمرير داكنة ونحيفة بدل الأشرطة البيضاء الافتراضية — التمرير نفسه ما يتأثر */
+*{scrollbar-width:thin;scrollbar-color:#353e50 transparent}
+
+*::-webkit-scrollbar{width:6px;height:6px}
+
+*::-webkit-scrollbar-track{background:transparent}
+
+*::-webkit-scrollbar-thumb{background:#353e50;border-radius:6px}
+
+*::-webkit-scrollbar-thumb:hover{background:#34629b}
+
+*::-webkit-scrollbar-corner{background:transparent}

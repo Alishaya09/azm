@@ -1,0 +1,53 @@
+/* داشبورد التقارير: فلاتر جانبية + مؤشرات + بطاقات رسوم على سطح كحلي.
+   الشبكة والمحاور رمادية خافتة (خط شعري)، والنص بألوان النص لا بألوان السلاسل. */
+.rd-root{--rd-surface:#1d222c;--rd-panel:#202634;--rd-line:#2c3341;--rd-axis:#3a4253;--rd-muted:#8b95a4;--rd-text:#c9d2de;--rd-strong:#e6ebf2;
+  display:grid;grid-template-columns:190px minmax(0,1fr);gap:14px;margin:4px 0 22px;color:var(--rd-text)}
+.rd-filters{display:flex;flex-direction:column;gap:12px}
+.rd-filter{margin:0;padding:12px 14px;background:var(--rd-panel);border:1px solid var(--rd-line);border-radius:8px;display:flex;flex-direction:column;gap:6px}
+.rd-filter legend{float:left;width:100%;padding:0 0 6px;margin:0 0 2px;border-bottom:1px solid var(--rd-line);font-size:12px;font-weight:700;color:var(--rd-strong)}
+.rd-filter label{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--rd-text);cursor:pointer}
+.rd-filter input{accent-color:#3a7bd5;margin:0}
+.rd-filter label i{width:9px;height:9px;border-radius:2px;flex:none}
+
+.rd-main{display:flex;flex-direction:column;gap:14px;min-width:0}
+.rd-kpis{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:12px}
+.rd-kpi{background:var(--rd-panel);border:1px solid var(--rd-line);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.rd-kpi small{font-size:11px;color:var(--rd-muted)}
+.rd-kpi b{font:600 24px/1.1 system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--rd-strong);display:flex;align-items:center;gap:6px}
+.rd-kpi.hero{background:linear-gradient(135deg,#22324d,#1d2534);border-color:#33507a}
+.rd-kpi.hero b{font-size:34px}
+.rd-status.critical{color:#d03b3b;font-size:13px}
+
+.rd-row{display:grid;gap:14px}
+.rd-row.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rd-row.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.rd-card{background:var(--rd-surface);border:1px solid var(--rd-line);border-radius:8px;padding:12px 14px 10px;min-width:0;display:flex;flex-direction:column}
+.rd-card>header{text-align:center;margin-bottom:6px}
+.rd-card h3{margin:0;font-size:13px;font-weight:700;color:var(--rd-strong)}
+.rd-card>header small{display:block;margin-top:2px;font-size:10.5px;color:var(--rd-muted)}
+.rd-legend{list-style:none;margin:0 0 4px;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 12px}
+.rd-legend li{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--rd-text)}
+.rd-legend i{width:10px;height:10px;border-radius:2px}
+
+.rd-plot{position:relative;width:100%;min-width:0}
+.rd-plot svg{display:block;overflow:visible;font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
+.rd-grid line{stroke:var(--rd-line);stroke-width:1}
+.rd-grid text,.rd-axis text,.rd-axis-label{fill:var(--rd-muted);font-size:10px;font-variant-numeric:tabular-nums}
+.rd-base{stroke:var(--rd-axis);stroke-width:1}
+.rd-cross{stroke:var(--rd-muted);stroke-width:1;opacity:.6}
+.rd-ref{stroke:#9fa9b7;stroke-width:1;stroke-dasharray:3 4;opacity:.7}
+.rd-ref-label{fill:var(--rd-muted);font-size:9.5px}
+.rd-dot{stroke:var(--rd-surface);stroke-width:2}
+.rd-band.c{fill:#2a3040}.rd-band.w{fill:#313848}.rd-band.g{fill:#3a4253}
+.rd-marker{stroke:var(--rd-strong);stroke-width:2}
+.rd-value{fill:var(--rd-text);font-size:10.5px;font-weight:600}
+.rd-empty{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;color:var(--rd-muted);pointer-events:none}
+.rd-tip{position:absolute;z-index:5;min-width:150px;max-width:220px;pointer-events:none;background:#11151d;border:1px solid var(--rd-axis);border-radius:6px;padding:8px 10px;box-shadow:0 8px 20px #000a;font-size:11px}
+.rd-tip b{display:block;margin-bottom:5px;color:var(--rd-strong);unicode-bidi:plaintext}
+.rd-tip div{display:flex;align-items:center;gap:6px;color:var(--rd-text);line-height:1.6}
+.rd-tip div i{width:8px;height:8px;border-radius:2px;flex:none}
+.rd-tip div span{flex:1;unicode-bidi:plaintext}
+.rd-tip strong{color:var(--rd-strong);font-variant-numeric:tabular-nums}
+
+@media (max-width:1250px){.rd-row.three{grid-template-columns:repeat(2,minmax(0,1fr))}.rd-row.three>.rd-card:last-child{grid-column:1/-1}}
+@media (max-width:900px){.rd-root{grid-template-columns:1fr}.rd-filters{flex-direction:row;flex-wrap:wrap}.rd-filter{flex:1 1 160px}.rd-row.two,.rd-row.three{grid-template-columns:1fr}.rd-kpis{grid-template-columns:repeat(2,1fr)}.rd-kpi.hero{grid-column:1/-1}}

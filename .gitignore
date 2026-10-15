@@ -1,0 +1,48 @@
+# Live data: accounts, passwords, operations. NEVER commit.
+# Leading slash = only the project-root folders (training/data/ must stay tracked).
+/data/
+/data-colleague/
+*.sqlite
+*.sqlite3
+*.db
+FIRST_RUN_CREDENTIALS.txt
+
+# Local instructions for AI coding assistants (kept on this machine only)
+/AGENTS.md
+/CLAUDE.md
+
+# Internal instruction files for applying patches (not part of the project)
+/docs/history/patches/
+/docs/patches/
+
+# Local settings (may contain keys)
+.env
+.env.*
+!.env.example
+
+# Model weights and adapters: published as a GitHub Release asset, not in git
+/models/
+*.safetensors
+*.gguf
+
+# Build / release output
+dist/
+release/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Evaluation runs (per-example dumps). eval-results/report.md IS committed as evidence.
+eval-results/*
+!eval-results/report.md
+
+# Misc
+node_modules/
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini

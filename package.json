@@ -1,0 +1,24 @@
+{
+  "name": "azm-logistics",
+  "version": "2.0.0",
+  "description": "AZM (عَزْم) — Smart Tactical Logistics Platform: live map, supply requests, convoy tracking, stock simulation and an AI assistant ready for an on-premise LLM.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.15"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node server.mjs",
+    "build": "node build.mjs",
+    "preview": "node server.mjs dist",
+    "test": "node scripts/smoke-test.mjs",
+    "mock-llm": "node scripts/mock-llm.mjs",
+    "setup": "node scripts/setup.mjs",
+    "package": "node scripts/package.mjs",
+    "db:inspect": "node scripts/db-inspect.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

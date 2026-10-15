@@ -1,0 +1,129 @@
+/* قواعد البيانات (المستودعات والهيكل) + إدارة المستخدمين + طلب حساب جديد */
+
+/* ===== شارة العدد على التبويب ===== */
+.nav-badge{display:inline-grid;place-items:center;min-width:18px;height:18px;margin-left:6px;padding:0 5px;border-radius:9px;background:#dda83c;color:#111;font:700 10px 'JetBrains Mono'}
+
+/* ===== فحص المخزون على بطاقة الطلب ===== */
+.stock-ok{display:block;color:#9ae45c!important;font-size:9px;margin:2px 0 6px}
+.stock-short{display:block;color:#ffb36b!important;font-size:9px;margin:2px 0 6px;line-height:1.5}
+
+/* ===== صفوف المستودع ===== */
+.depot-rows{display:flex;flex-direction:column;gap:7px}
+.depot-row{display:grid;grid-template-columns:78px 1fr auto auto;gap:8px;align-items:center;font-size:11px;color:#d1d7e1}
+.depot-bar{height:6px;background:#12151c;border-radius:3px;overflow:hidden}.depot-bar i{display:block;height:100%;border-radius:3px}
+.depot-row b{font:700 11px 'JetBrains Mono';color:#fff}.depot-row small{font-size:9px;color:#79828f;white-space:nowrap}
+
+/* ===== صفحة قواعد البيانات ===== */
+.db-page{display:flex;flex-direction:column;gap:18px}
+.db-page .page-heading{align-items:center}
+.db-actions{display:flex;gap:8px;margin-left:auto}
+.db-actions button,.db-base-head button,.db-fsb header button{background:#2c3340;border:1px solid #477ec2;color:#d1d7e1;border-radius:6px;padding:7px 12px;font-size:11px;font-weight:700;cursor:pointer}
+.db-actions button:hover,.db-base-head button:hover,.db-fsb header button:hover{background:#34507a;color:#fff}
+.db-base{background:#1c212b;border:1px solid #374050;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.db-base-head{display:flex;align-items:center;gap:12px}.db-base-head>div{flex:1}
+.db-base-head h3{margin:0;font-size:17px;color:#fff}.db-base-head small{color:#8892a0;font-size:11px}
+.db-grid{display:grid;grid-template-columns:minmax(300px,1fr) minmax(360px,1.4fr);gap:12px}
+.db-card{background:#232832;border:1px solid #2c3340;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.db-card h4,.db-card h5{margin:0;font-size:12px;color:#a9b4c4}
+.db-sum{margin:0;width:100%;border-collapse:collapse;font-size:11px;background:none}
+.db-sum th{padding:6px 8px;font-size:10px;color:#79828f;text-align:start;border-bottom:1px solid #374050;background:none}
+.db-sum td{padding:7px 8px;border-bottom:1px solid #2c3340;color:#d1d7e1;font-family:'JetBrains Mono',monospace}
+.db-sum td:first-child{font-family:inherit}.db-sum td small{display:block;font-size:9px;color:#79828f}
+.db-sum td b{color:#6ea0dd}
+.db-fsb{border:1px solid #2c3340;border-left:3px solid #5aaee0;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:10px;background:#1a1e27}
+.db-fsb.direct{border-left-color:#d0a64c}
+.db-fsb header{display:flex;align-items:center;gap:10px}.db-fsb header>div{flex:1}
+.db-fsb h4{margin:0;font-size:14px;color:#fff}.db-fsb header small{font-size:10px;color:#8892a0}
+.db-units{margin:0;width:100%;border-collapse:collapse;font-size:11px;background:none}
+.db-units th{padding:6px;font-size:9px;color:#79828f;text-align:start;border-bottom:1px solid #374050;background:none;white-space:nowrap}
+.db-units td{padding:7px 6px;border-bottom:1px solid #2c3340;color:#d1d7e1;vertical-align:top}
+.db-units td b{display:block;font-size:11px;color:#fff}.db-units td small{display:block;font-size:9px;color:#79828f}
+.db-units td span[dir=ltr]{font:600 11px 'JetBrains Mono'}
+.db-units td small.green{color:#58cf78}.db-units td small.amber{color:#dda83c}.db-units td small.red{color:#db5555}
+.qty-input{background:#12151c;color:#e2e7ef;border:1px solid #374050;border-radius:6px;padding:9px 10px;font:inherit;font-size:12px}
+@media (max-width:1100px){.db-grid{grid-template-columns:1fr}}
+
+/* ===== بطاقة النقطة: التبعية ===== */
+.ni-parent{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 8px;border-radius:6px;background:#232832;font-size:11px}
+.ni-parent small{color:#8892a0}.ni-parent b{font-size:11px;color:#fff}
+.ni-parent select{background:#12151c;color:#e2e7ef;border:1px solid #374050;border-radius:5px;padding:4px 6px;font:inherit;font-size:11px;max-width:180px}
+.node-info .depot-row{grid-template-columns:62px 1fr auto;font-size:10px}.node-info .depot-row small{display:none}
+
+/* ===== إدارة المستخدمين ===== */
+.users-page{display:flex;flex-direction:column;gap:16px}
+.users-page .page-heading{align-items:center}
+.add-user{margin-left:auto;border:0;border-radius:7px;padding:9px 16px;color:#fff;font-weight:700;cursor:pointer}
+.user-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.user-stats>div{background:#232832;border:1px solid #374050;border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.user-stats b{font:700 26px 'JetBrains Mono';color:#d1d7e1}.user-stats small{font-size:11px;color:#8892a0}
+.user-stats .green b{color:#58cf78}.user-stats .amber b{color:#f3c85e}.user-stats .red b{color:#ff7b7b}
+.pending-section{border:1px solid #7a6a32;background:#211f17;border-radius:12px;padding:14px}
+.pending-section h3{margin:0 0 12px;font-size:14px;color:#f3c85e;display:flex;align-items:center;gap:8px}.pending-section h3 span{background:#3a3420;border-radius:9px;padding:1px 8px;font-size:11px}
+.pending-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+.pending-card{background:#1c212b;border:1px solid #374050;border-left:3px solid #dda83c;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.pending-card>header{display:flex;align-items:center;gap:10px}.pending-card>header>div{flex:1;min-width:0}
+.pending-card>header b{display:block;font-size:14px;color:#fff}.pending-card>header small{font-size:10px;color:#8892a0}
+.pending-card .req-info{font-size:11px}
+.pending-actions{display:flex;flex-wrap:wrap;gap:6px}
+.pending-actions select{flex:1;min-width:120px;background:#12151c;color:#e2e7ef;border:1px solid #374050;border-radius:6px;padding:7px;font:inherit;font-size:11px}
+.pending-actions button{border:0;border-radius:6px;padding:8px 12px;color:#fff;font:inherit;font-size:11px;font-weight:700;cursor:pointer}
+.user-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.filter-chips{display:flex;flex-wrap:wrap;gap:6px}
+.filter-chips button{background:#232832;border:1px solid #374050;color:#a9b4c4;border-radius:18px;padding:6px 12px;font:inherit;font-size:11px;cursor:pointer}
+.filter-chips button span{margin-left:4px;font:700 10px 'JetBrains Mono';color:#79828f}
+.filter-chips button.active{background:#34507a;border-color:#477ec2;color:#fff}.filter-chips button.active span{color:#cfe0ff}
+.user-search{flex:0 1 340px;background:#12151c;color:#e2e7ef;border:1px solid #374050;border-radius:18px;padding:8px 14px;font:inherit;font-size:12px;outline:none}.user-search:focus{border-color:#477ec2}
+.users-table-wrap{overflow-x:auto;border:1px solid #374050;border-radius:10px}
+.users-table{margin:0;width:100%;border-collapse:collapse;background:#1c212b;font-size:12px}
+.users-table th{padding:10px 12px;text-align:start;font-size:10px;color:#8892a0;background:#232832;white-space:nowrap}
+.users-table td{padding:10px 12px;border-top:1px solid #2c3340;color:#d1d7e1;vertical-align:middle}
+.users-table td small{display:block;font-size:10px;color:#79828f}
+.users-table tr.suspended td,.users-table tr.rejected td{opacity:.7}
+.member{display:flex;align-items:center;gap:10px}.member b{display:block;font-size:13px;color:#fff}.member em{font-style:normal;font-size:10px;color:#6ea0dd}
+.avatar{width:38px;height:38px;flex:none;border-radius:50%;display:grid;place-items:center;font:700 13px 'Tajawal',sans-serif;color:#fff;background:linear-gradient(135deg,#34507a,#1f2f4a);border:1px solid #477ec2}
+.avatar.admin{background:linear-gradient(135deg,#8a6a2a,#4a3916);border-color:#d0a64c}.avatar.pending{background:linear-gradient(135deg,#6a5a22,#3a3218);border-color:#dda83c}
+.role-badge,.status-badge{display:inline-block;padding:3px 9px;border-radius:11px;font-size:10px;font-weight:700;white-space:nowrap}
+.role-badge.admin{background:#3a3420;color:#f3c85e}.role-badge.user{background:#1f2f4a;color:#9cc2f0}
+.status-badge.active{background:#1f3a2c;color:#9ae45c}.status-badge.pending{background:#3a3420;color:#f3c85e}.status-badge.suspended{background:#3a2222;color:#ff8a8a}.status-badge.rejected{background:#2c3340;color:#a9b4c4}
+.users-table .row-actions{display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-end}
+.users-table .row-actions button{border:1px solid #374050;border-radius:5px;padding:5px 9px;background:#2c3340;color:#d1d7e1;font:inherit;font-size:10px;cursor:pointer;white-space:nowrap}
+.users-table .row-actions button.warn{border-color:#7a6a32;color:#f3c85e}.users-table .row-actions button.reject{color:#ff8a8a!important;border-color:#5a3a3a}
+.muted{color:#79828f}
+.req-form input:not([type=range]):not([type=checkbox]){background:#12151c;color:#e2e7ef;border:1px solid #374050;border-radius:6px;padding:9px 10px;font:inherit;font-size:12px;font-weight:400;outline:none}
+.req-form input:focus{border-color:#477ec2}.req-form input:disabled{opacity:.6}
+@media (max-width:900px){.user-stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ===== طلب حساب جديد (شاشة الدخول) ===== */
+.login-wrap.wide{width:560px}
+.login-switch{margin:14px 0 0;font-size:12px;color:#8892a0;text-align:center}
+.login-switch button{background:none;border:0;color:#6ea0dd;font:inherit;font-weight:700;cursor:pointer;text-decoration:underline}
+.register-form{display:flex;flex-direction:column;gap:10px;text-align:start}
+.register-form h2,.register-form>p{text-align:center}
+.reg-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;max-height:52vh;overflow-y:auto;padding:2px}
+.reg-grid label{display:flex;flex-direction:column;gap:4px;font-size:11px;color:#a9b4c4}
+.reg-grid .span2{grid-column:1/3}
+.reg-grid input,.reg-grid select,.reg-grid textarea{background:#12151c;color:#fff;border:1px solid #374050;border-radius:8px;padding:9px 10px;font:inherit;font-size:12px;outline:none;resize:vertical}
+.reg-grid input:focus,.reg-grid select:focus,.reg-grid textarea:focus{border-color:#477ec2}
+.reg-hint{font-size:10px;color:#79828f}
+.reg-actions{display:flex;gap:8px}
+.reg-actions button{flex:1;padding:12px;border:0;border-radius:9px;font-weight:700;cursor:pointer;color:#fff;background:linear-gradient(135deg,#1f4f8f,#3a7bd5)}
+.reg-actions button.back{background:#232832;color:#a9b4c4;flex:0 0 auto;padding:12px 16px}
+.reg-actions button:disabled{opacity:.55}
+.reg-sent{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:10px 0}
+.reg-sent span{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:#1f3a2c;color:#9ae45c;font-size:26px}
+.reg-sent p{color:#a9b4c4;font-size:13px;line-height:1.7;margin:0}
+.reg-sent button{margin-top:8px;padding:10px 18px;border:0;border-radius:8px;background:#232832;color:#d1d7e1;cursor:pointer}
+@media (max-width:640px){.login-wrap.wide{width:92vw}.reg-grid{grid-template-columns:1fr}.reg-grid .span2{grid-column:auto}}
+
+/* ===== إصلاحات العرض ===== */
+.topbar .brand b{white-space:nowrap}
+.topbar .role-chip{white-space:nowrap;max-width:300px;overflow:hidden;text-overflow:ellipsis}
+.db-units td small.green,.db-units td small.amber,.db-units td small.red{background:none}
+/* نموذج التسجيل: نصغّر الشعار والعنوان حتى يكفي النموذج الشاشة */
+.login-wrap.wide .emblem .azm-logo{height:72px}
+.login-wrap.wide h1{font-size:26px;margin-top:4px}
+.login-wrap.wide .tagline{display:none}
+.login-wrap.wide .login-card{padding-top:16px;padding-bottom:16px}
+.register-form h2{margin:0;font-size:16px}
+.register-form>p{margin:0 0 4px;font-size:11px;color:#8892a0}
+.reg-grid{max-height:calc(100vh - 360px)}

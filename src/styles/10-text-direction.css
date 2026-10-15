@@ -1,0 +1,3 @@
+/* اتجاه الفقرات حسب لغتها */
+/* الفقرات تاخذ اتجاه لغتها (العربي من اليمين) حتى داخل الصفحة اللي اتجاهها يسار، عشان الأرقام والرموز ما تنقلب */
+.how-card p,.opt-intro,.sensor-card p,.sit-box p,.sit-box h5,.threat-row span,.req-notes,.ai-msg p{unicode-bidi:plaintext;text-align:start}

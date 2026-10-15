@@ -1,0 +1,68 @@
+/* زر اللغة، النماذج، بطاقات الطلبات، صفحة المستخدمين، تتبع القوافل */
+.lang-toggle{background:#232934;color:#d1d7e1;border:1px solid #373f50;border-radius:4px;padding:4px 10px;font:600 11px Tajawal,sans-serif;cursor:pointer;letter-spacing:0}
+.lang-toggle:hover{border-color:#477ec2;color:#fff}
+
+.password-panel button:disabled{opacity:.55;cursor:default}
+.form-error{display:block;color:#ff8a8a;font-size:11px;margin:4px 0}
+.form-notice{color:#9ae45c;font-size:11px;margin:4px 0}
+
+.role-chip.user{color:#72c6f1;border-color:#3d6177;background:#1f3240}
+
+.new-request{width:100%;margin:4px 0 8px;padding:8px;border:1px dashed #34629b;border-radius:6px;background:#1a1f29;color:#639add;font-weight:700;cursor:pointer;font-size:11px}
+
+.request-form{display:flex;flex-direction:column;gap:7px;padding:10px;margin-bottom:8px;border:1px solid #374050;border-radius:7px;background:#1c212b}
+.request-form label{display:flex;flex-direction:column;gap:4px;color:#8993a2;font-size:10px}
+.request-form select{background:#12151c;color:#d1d7e1;border:1px solid #374050;border-radius:4px;padding:6px}
+.request-form>div{display:flex;gap:5px}
+.request-form button{flex:1;border:0;border-radius:4px;padding:7px;color:#fff;cursor:pointer;font-size:10px}
+
+.req-status{display:inline-block;margin-top:4px;padding:3px 8px;border-radius:4px;font-size:9px;font-weight:700;background:#3a3420;color:#dda83c}
+.req-status.approved{background:#24391f;color:#9ae45c}
+.req-status.rejected{background:#3a2222;color:#ff8a8a}
+
+.azm-icon .node.unit.other{background:#6b7568;filter:none}
+.azm-icon .node.unit.mine{box-shadow:0 0 0 3px #f3c85e}
+/* قواعد ووحدات خارج نطاق مسؤول القاعدة: بالاسم فقط، باهتة ومحايدة */
+.azm-icon .node.names-only{opacity:.6;filter:grayscale(.8)}
+.azm-icon .node.main.names-only{border-color:#6f7987;color:#9fa9b7}
+
+.users-page .user-form{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.user-form input,.user-form select{background:#12151c;color:#d1d7e1;border:1px solid #374050;border-radius:5px;padding:8px 10px;font:inherit;font-size:11px}
+.user-form button{border:0;border-radius:5px;padding:8px 14px;color:#fff;cursor:pointer;font-weight:700}
+
+.users-page td,.users-page th{padding:8px 10px;text-align:start}
+.row-actions{display:flex;gap:6px;justify-content:flex-end}
+.row-actions button{border:1px solid #374050;border-radius:4px;padding:4px 10px;background:#232934;color:#d1d7e1;cursor:pointer;font-size:10px}
+
+.convoy-card.tracked{display:flex;flex-direction:column;gap:4px;align-items:stretch}
+.convoy-head{display:flex;align-items:center;gap:6px}
+.convoy-head span{margin-left:auto;color:#f3c85e;font:700 11px 'JetBrains Mono'}
+.convoy-card.tracked small{color:#929aa7;font-size:9px}
+.progress{height:5px;background:#12151c;border-radius:3px;overflow:hidden}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,#d0a64c,#f3c85e);transition:width .5s linear}
+
+.route-info{display:block;color:#65c9e8!important;font-size:9px;margin:6px 0}
+.no-route{display:block;color:#ffb36b!important;font-size:9px;margin:6px 0}
+
+.request button:disabled{opacity:.45;cursor:not-allowed}
+
+.legend .convoy-line{border-top-color:#f3a83c;border-top-width:3px}
+
+.azm-icon .convoy-icon{font-size:22px;filter:drop-shadow(0 2px 3px #000a)}
+
+.azm-link{filter:drop-shadow(0 0 3px rgba(0,0,0,.85))}
+.azm-link-glow{filter:blur(2px)}
+
+.meter b.green,.meter b.amber,.meter b.red{background:none}
+/* مسودة الطلب من النص: ما صححه الخادم بعد النموذج وما ينقص */
+.ai-notes{display:grid;gap:6px;margin-top:10px;padding:10px 12px;border:1px dashed #3d6f8f;border-radius:10px}
+.ai-notes small{font-size:12px!important;margin:0;line-height:1.6}
+/* الأصناف المطلوبة من النص فقط: الكمية ووحدة القياس والتحويل والمتاح */
+.ai-lines{display:grid;gap:8px;border:1px solid #2f5f8a;border-radius:12px;padding:10px 12px}
+.ai-line{display:grid;grid-template-columns:minmax(110px,1.2fr) 90px 100px minmax(140px,2fr) 28px;gap:8px;align-items:center}
+.ai-line input,.ai-line select,.ai-add{min-width:0}
+.ai-line input.over{border-color:#f3c85e}
+.ai-line small{font-size:11px!important;margin:0}
+.ai-x{background:none;border:0;color:#f2a7b0;cursor:pointer;font-size:15px}
+.ai-add{justify-self:start;color:#65c9e8}
+.ai-line input,.ai-line select{background:#0f141d;color:#e6e9ef;border:1px solid #2f3747;border-radius:8px;padding:6px 8px;font:inherit}

@@ -1,0 +1,151 @@
+// End-to-end v9 tests: isolated data, two bases, three roles, HQ, reports, archive.
+import { spawn } from 'node:child_process';
+import { mkdtempSync, existsSync, rmSync, readFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createServer } from 'node:net';
+import http from 'node:http';
+
+const root = fileURLToPath(new URL('..', import.meta.url)), dir = mkdtempSync(join(tmpdir(), 'azm-v9-'));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const freePort = () => new Promise((resolve, reject) => { const s = createServer(); s.once('error', reject); s.listen(0, '127.0.0.1', () => { const p = s.address().port; s.close(() => resolve(p)); }); });
+const port = await freePort(), baseUrl = `http://127.0.0.1:${port}`;
+let server, checks = 0, lastPrompt = '', lastToolResult = null, foreignId = '';
+const ok = (v, message) => { if (!v) throw new Error(message); checks++; };
+const mock = http.createServer((req, res) => { const parts=[]; req.on('data', b=>parts.push(b)); req.on('end',()=>{res.setHeader('Content-Type','application/json'); if (req.url === '/v1/models') return res.end(JSON.stringify({data:[{id:'mock-report'}]})); const b=JSON.parse(Buffer.concat(parts).toString()); lastPrompt=JSON.stringify(b.messages); const tool=b.messages.find(m=>m.role==='tool'); if (tool) lastToolResult=JSON.parse(tool.content); const askTool=b.tools?.length && b.messages.some(m=>m.role==='user'&&m.content==='read forbidden'); const message=askTool?{role:'assistant',content:null,tool_calls:[{id:'call-1',type:'function',function:{name:'read_inventory',arguments:JSON.stringify({entityId:foreignId})}}]}:{role:'assistant',content:tool?'هذا الكيان خارج صلاحيتك':'شرح من الأرقام والمرجع'}; res.end(JSON.stringify({choices:[{message}]}));});});
+const start = async () => {
+  server = spawn(process.execPath, [join(root, 'server.mjs')], { cwd: root, stdio: 'ignore', env: { ...process.env, HOST:'127.0.0.1', PORT:String(port), AZM_DATA_DIR:dir, AZM_ADMIN_PASSWORD:'test-v9-password', AZM_HOUR_MS:'300', AZM_AI_PROVIDER:'openai', AZM_AI_BASE_URL:`http://127.0.0.1:${mock.address().port}/v1`, AZM_AI_MODEL:'mock-report', AZM_REPORT_AI_PROVIDER:'openai', AZM_REPORT_AI_BASE_URL:`http://127.0.0.1:${mock.address().port}/v1`, AZM_REPORT_AI_MODEL:'mock-report' }});
+  for (let i=0;i<100;i++) { try { await fetch(baseUrl+'/api/me'); return; } catch { await sleep(100); } }
+  throw new Error('server not ready');
+};
+const stop = async () => { if (server?.exitCode === null) { server.kill(); await new Promise(r => server.once('exit',r)); } };
+const call = async (path, cookie, method='GET', body) => { const r=await fetch(baseUrl+path,{method,headers:{...(cookie?{cookie}:{}),...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});return {status:r.status,body:await r.json().catch(()=>({})),cookie:r.headers.get('set-cookie')?.split(';')[0]}; };
+const login = async name => (await call('/api/login',null,'POST',{username:name,password:name==='admin'?'test-v9-password':'test-v9-roles'})).cookie;
+const shard = id => join(dir,'entities',Buffer.from(id).toString('hex')+'.sqlite');
+
+try {
+  await new Promise(r=>mock.listen(0,'127.0.0.1',r)); await start();
+  let commander = await login('admin'); ok(!!commander,'commander login');
+  await call('/api/sim',commander,'POST',{speed:0});
+  let s=(await call('/api/state',commander)).body;
+  const hq=s.layout.nodes.find(n=>n.type==='hq'); ok(hq?.id==='hq-riyadh'&&hq.code==='AZM-HQ-001'&&hq.pos[0]===24.9,'one fixed HQ near Riyadh');
+  ok((await call(`/api/entities/${hq.id}`,commander,'DELETE')).body.error==='hq_locked','HQ cannot be deleted');
+  const altered={...s.layout,nodes:s.layout.nodes.map(n=>n.id===hq.id?{...n,pos:[26,50]}:n)};
+  ok((await call('/api/layout',commander,'PUT',{...altered,baseVersion:s.layoutVersion})).body.error==='hq_locked','HQ cannot be moved');
+  const B=(await call('/api/entities',commander,'POST',{type:'main',label:'القاعدة',pos:[25.1,47.1]})).body.node;
+  const P=(await call('/api/entities',commander,'POST',{type:'fsb',label:'الإمداد',baseId:B.id,pos:[25.2,47.2]})).body.node;
+  const U=(await call('/api/entities',commander,'POST',{type:'unit',label:'الوحدة',baseId:B.id,pos:[25.3,47.3],people:200,vehicles:0,fuelType:'none'})).body.node;
+  const B2=(await call('/api/entities',commander,'POST',{type:'main',label:'القاعدة',pos:[22,44]})).body.node;
+  foreignId=B2.id;
+  ok(B.code!==B2.code&&P.code.startsWith(B.code+'-P-')&&U.code.startsWith(B.code+'-U-'),'codes unique despite duplicate names and bound to base');
+  ok([B,P,U].every(n=>existsSync(shard(n.id))),'each new entity has its own SQLite database');
+  for (const entry of [{username:'manager.v9',role:'base_manager',baseId:B.id},{username:'other.v9',role:'base_manager',baseId:B2.id},{username:'unit.v9',role:'user',unitId:U.unitId}]) ok((await call('/api/users',commander,'POST',{...entry,password:'test-v9-roles'})).status===200,'account created');
+  const manager=await login('manager.v9'), other=await login('other.v9'), unit=await login('unit.v9');
+  s=(await call('/api/state',manager)).body;
+  ok(s.layout.nodes.some(n=>n.id===hq.id)&&!s.layout.nodes.some(n=>n.id===B2.id),'base manager sees HQ and own hierarchy only');
+  s=(await call('/api/state',unit)).body;
+  ok(!s.layout.nodes.some(n=>n.id===hq.id)&&s.layout.nodes.some(n=>n.id===P.id)&&!s.layout.nodes.some(n=>n.id===B2.id),'unit sees own base and supply points only');
+  ok((await call('/api/inventory/add',manager,'POST',{baseId:B.id,items:[{resource:'azm_mre',qty:2}],reason:'unauthorized'})).status===403,'only commander can replenish');
+  // The base starts full; create room first, then request finite HQ supply.
+  ok((await call(`/api/depots/${P.id}/transfer`,manager,'POST',{to:B.id,resource:'azm_mre',qty:100})).status===200,'manager controls own supply point');
+
+  const beforeOld=(await call('/api/state',commander)).body;
+  const emptyPoint=beforeOld.layout.nodes.find(n=>n.type==='fsb' && n.baseId==='base');
+  ok(Object.values(beforeOld.depots[emptyPoint.id]).every(q=>q===0),'legacy point is not automatically filled');
+  const oldItems=beforeOld.catalog.filter(c=>c.active!==false).map(c=>({resource:c.key,qty:c.capacity.fsb}));
+  const refillOld={to:emptyPoint.id,refill:true,items:oldItems,operationKey:'old-fill'};
+  const oldTwice=await Promise.all([call('/api/depots/base/transfer',commander,'POST',refillOld),call('/api/depots/base/transfer',commander,'POST',refillOld)]);
+  ok(oldTwice.every(r=>r.status===200)&&oldTwice[0].body.opId===oldTwice[1].body.opId,'legacy empty point explicitly fills once for all active items');
+  ok((await call(`/api/depots/${B.id}/transfer`,manager,'POST',{to:P.id,refill:true,items:[{resource:'azm_mre',qty:100}],operationKey:'manager-refill'})).status===200,'own base manager refills point');
+  ok((await call(`/api/depots/${B.id}/transfer`,unit,'POST',{to:P.id,refill:true,items:[{resource:'azm_mre',qty:1}],operationKey:'unit-refill'})).status===403,'unit cannot refill point');
+  ok((await call(`/api/depots/${B.id}/transfer`,other,'POST',{to:P.id,refill:true,items:[{resource:'azm_mre',qty:1}],operationKey:'other-refill'})).status===403,'other base cannot refill point');
+  ok((await call(`/api/depots/${B2.id}/transfer`,commander,'POST',{to:P.id,refill:true,items:[{resource:'azm_mre',qty:1}],reason:'test',operationKey:'wrong-base-refill'})).body.error==='invalid_target','refill accepts only parent base');
+  // Reduce exactly one base item below the center capacity, then prove both creation APIs are atomic.
+  const spare=(await call('/api/entities',commander,'POST',{type:'fsb',label:'spare',baseId:B2.id,pos:[22.1,44.1],operationKey:'spare-center'})).body.node;
+  const resource='azm_mre';
+  for(let j=0;j<8;j++) ok((await call('/api/entities',commander,'POST',{type:'fsb',label:`reserve ${j}`,baseId:B2.id,pos:[22.3,44.3]})).status===200,'reserve center takes stock from base');
+  const remove=1;
+  ok((await call(`/api/depots/${B2.id}/transfer`,commander,'POST',{to:B.id,items:[{resource,qty:remove}],reason:'shortage fixture',operationKey:'one-short'})).status===200,'prepare single-item shortage');
+  const shortBefore=(await call('/api/state',commander)).body;
+  const createBody={type:'fsb',label:'short',baseId:B2.id,pos:[22.2,44.2],operationKey:'short-center'};
+  const short=await call('/api/entities',commander,'POST',createBody);
+  ok(short.status===409&&short.body.failures.length===1&&short.body.failures[0].missing===1,'creation reports precise shortage');
+  const layoutBody={...shortBefore.layout,nodes:[...shortBefore.layout.nodes,{id:'map-short',...createBody}],baseVersion:shortBefore.layoutVersion,operationKey:'map-short-op'};
+  ok((await call('/api/layout',commander,'PUT',layoutBody)).status===409,'map creation also rejects shortage');
+  const shortAfter=(await call('/api/state',commander)).body;
+  ok(JSON.stringify(shortBefore.depots)===JSON.stringify(shortAfter.depots)&&shortBefore.layout.nodes.length===shortAfter.layout.nodes.length,'shortage leaves all balances and nodes untouched');
+  ok(!existsSync(shard('map-short')),'failed map creation leaves no SQLite shard');
+  ok((await call('/api/inventory/add',commander,'POST',{baseId:B2.id,items:[{resource,qty:1}],reason:'replenish first',operationKey:'one-back'})).status===200,'commander replenishes shortage explicitly');
+  const recovered=await call('/api/entities',commander,'POST',createBody);
+  ok(recovered.status===200,'creation succeeds after base replenishment');
+  const fullAfter=(await call('/api/state',commander)).body;
+  ok(fullAfter.catalog.every(c=>fullAfter.depots[recovered.body.node.id][c.key]===c.capacity.fsb),'recovered center fills every item');
+  const mapBase=(await call('/api/entities',commander,'POST',{type:'main',label:'map base',pos:[23,45]})).body.node;
+  const mapState=(await call('/api/state',commander)).body;
+  const mapBody={...mapState.layout,nodes:[...mapState.layout.nodes,{id:'map-filled',type:'fsb',baseId:mapBase.id,label:'map center',pos:[23.1,45.1]}],baseVersion:mapState.layoutVersion,operationKey:'map-fill-op'};
+  const mapTwice=await Promise.all([call('/api/layout',commander,'PUT',mapBody),call('/api/layout',commander,'PUT',mapBody)]);
+  ok(mapTwice.every(r=>r.status===200)&&mapTwice[0].body.layoutVersion===mapTwice[1].body.layoutVersion,'map creation replay debits once');
+  const mapFilled=(await call('/api/state',commander)).body;
+  ok(mapFilled.catalog.every(c=>mapFilled.depots['map-filled'][c.key]===c.capacity.fsb&&mapFilled.depots[mapBase.id][c.key]===c.capacity.main-c.capacity.fsb),'map center fills and debits all items');
+
+  const before=(await call('/api/state',commander)).body.depots[B.id].azm_mre;
+  const baseReq=await call('/api/requests',manager,'POST',{kind:'base',baseId:B.id,items:[{resource:'azm_mre',qty:30}],reason:'تعويض المخزون'});
+  ok(baseReq.status===200&&baseReq.body.status==='pending','manager asks commander to replenish base');
+  ok((await call(`/api/requests/${baseReq.body.id}/approve`,manager,'POST',{})).status===403,'manager cannot approve HQ request');
+  const supplied=await call(`/api/requests/${baseReq.body.id}/approve`,commander,'POST',{operationKey:'hq-v9'});
+  ok(supplied.status===200&&supplied.body.status==='delivered','commander replenishes from HQ');
+  s=(await call('/api/state',commander)).body;
+  ok(s.depots[B.id].azm_mre===before+30&&!s.depots[hq.id],'finite base increases, HQ remains unlimited without balance');
+  const moves=(await call('/api/movements?limit=500',commander)).body.movements;
+  ok(moves.some(m=>m.requestId===baseReq.body.id&&m.from?.entityId===hq.id&&m.from.unlimited&&m.to?.entityId===B.id&&m.qty===30),'HQ outbound recorded with actor and destination');
+  const report=(await call('/api/reports',manager)).body;
+  ok(report.hqOutgoing.totals.azm_mre.total>=30&&!report.bases.some(b=>b.id===B2.id),'scoped report includes own HQ replenishment');
+  const pointReport=report.entities.find(e=>e.id===P.id);
+  ok(s.catalog.every(c=>Math.abs(pointReport.rows[c.key].closing-s.depots[P.id][c.key])<.001),'reports reconcile all center items with transfer ledger');
+  ok(report.bases.some(b=>b.id===B.id&&b.code===B.code)&&report.entities.some(e=>e.id===P.id&&e.code===P.code)&&report.hqOutgoing.shipments.some(m=>m.to.code===B.code),'stable codes propagate through scoped reports and movements');
+  const question=await call('/api/report-chats',manager,'POST',{text:'كيف يعالج طلب الوحدة ومتى يخصم المخزون؟',language:'ar'});
+  ok(question.status===200&&question.body.messages.at(-1).text.includes('شرح'),'report chat uses separate model');
+  ok(lastPrompt.includes('azm-method-requests')&&!lastPrompt.includes(B2.id),'RAG context present without unrelated base');
+  const toolChat=await call('/api/chats',manager,'POST',{text:'read forbidden'});
+  ok(toolChat.status===200&&toolChat.body.messages.at(-1).text.includes('خارج صلاحيتك'),'chat model tool round trip returns a scoped answer');
+  ok(lastToolResult?.error==='out_of_scope','model cannot read another base through JSON tools');
+  const unitReq=await call('/api/requests',unit,'POST',{unitId:'UNIT-01',priority:'normal',mode:'truck',items:[{resource:'azm_mre',qty:10}],operationKey:'unit-v9'});
+  ok(unitReq.status===200&&unitReq.body.unitId===U.unitId,'unit officer requests only for own unit');
+  ok((await call(`/api/requests/${unitReq.body.id}/approve`,other,'POST',{})).status===404,'other base cannot approve');
+  const sourceBefore=(await call('/api/state',manager)).body.depots[P.id].azm_mre;
+  const route={fromId:P.id,path:[P.pos,U.pos],km:Math.max(15, Math.ceil(20)),hours:.1};
+  const dispatched=await call(`/api/requests/${unitReq.body.id}/approve`,manager,'POST',{route,operationKey:'dispatch-v9'});
+  ok(dispatched.status===200&&dispatched.body.status==='approved'&&dispatched.body.executedBy==='manager.v9','manager approves and dispatches own unit request');
+  ok((await call('/api/state',manager)).body.depots[P.id].azm_mre===sourceBefore-10,'source deducted once');
+  ok((await call(`/api/requests/${unitReq.body.id}/approve`,manager,'POST',{route,operationKey:'dispatch-v9'})).body.status==='approved','replayed approval returns same shipment');
+  ok((await call('/api/state',manager)).body.depots[P.id].azm_mre===sourceBefore-10,'replay does not deduct twice');
+
+  const U2=(await call('/api/entities',commander,'POST',{type:'unit',label:'concurrent unit',baseId:B.id,pos:[25.31,47.31],people:200,vehicles:0,fuelType:'none'})).body.node;
+  const concurrentBefore=(await call('/api/state',commander)).body;
+  ok((await call(`/api/depots/${P.id}/transfer`,commander,'POST',{to:B2.id,resource:'azm_mre',qty:concurrentBefore.depots[P.id].azm_mre-10,operationKey:'concurrent-drain',reason:'concurrent fixture'})).status===200,'prepare finite source for competing approvals');
+  const competing=await Promise.all([U,U2].map(u=>call('/api/requests',manager,'POST',{unitId:u.unitId,mode:'truck',items:[{resource:'azm_mre',qty:10}]})));
+  ok(competing.every(r=>r.status===200),'create two independent competing requests');
+  const approvals=await Promise.all(competing.map((r,i)=>call(`/api/requests/${r.body.id}/approve`,manager,'POST',{route:{fromId:P.id,path:[P.pos,[U,U2][i].pos],km:30,hours:.1},operationKey:`concurrent-${i}`})));
+  ok(approvals.filter(r=>r.status===200).length===1&&approvals.filter(r=>r.status===409).length===1,'only one competing request can debit remaining stock');
+  ok((await call('/api/state',manager)).body.depots[P.id].azm_mre===0,'concurrent approvals never overdraw or replenish center');
+
+  await call('/api/sim',commander,'POST',{speed:20});
+  for(let i=0;i<30;i++){s=(await call('/api/state',commander)).body;if(s.requests.find(r=>r.id===unitReq.body.id).status==='delivered')break;await sleep(120);}
+  ok(s.requests.find(r=>r.id===unitReq.body.id).status==='delivered','simulation delivers shipment');
+  const deliveryMoves=(await call('/api/movements?limit=500',commander)).body.movements;
+  ok(deliveryMoves.filter(m=>m.requestId===unitReq.body.id&&m.type==='delivery').length===1,'delivery credits unit exactly once');
+  ok(s.depots[P.id].azm_mre===0,'delivery does not replenish center');
+  for(const r of competing) if(s.requests.find(x=>x.id===r.body.id)?.status==='pending') await call(`/api/requests/${r.body.id}/reject`,manager,'POST',{reason:'test cleanup'});
+  ok((await call(`/api/entities/${U.id}`,commander,'DELETE')).status===200,'commander archives delivered unit');
+  ok(!existsSync(shard(U.id))&&JSON.parse(readFileSync(join(dir,'state.json'),'utf8')).archivedSnapshots[U.id], 'unit database removed after preserving central historical snapshot');
+  const restartBefore=(await call('/api/state',commander)).body;
+  await stop();await start();commander=await login('admin');
+  const restartAfter=(await call('/api/state',commander)).body;
+  ok(JSON.stringify(restartBefore.depots)===JSON.stringify(restartAfter.depots),'center balances survive restart without automatic refill');
+  ok((await call('/api/depots/base/transfer',commander,'POST',refillOld)).body.opId===oldTwice[0].body.opId,'refill operation key survives restart');
+  ok((await call('/api/entities',commander,'POST',createBody)).body.node.id===recovered.body.node.id,'creation operation key survives restart');
+  const history=(await call('/api/reports',commander)).body;
+  ok(history.entities.some(e=>e.id===U.id&&e.archived)&&history.requests.list.some(r=>r.id===unitReq.body.id),'archive history survives restart');
+  console.log(`All checks passed (${checks} supply-v9 checks)`);
+} finally { await stop(); await new Promise(r=>mock.close(r)); rmSync(dir,{recursive:true,force:true}); }
